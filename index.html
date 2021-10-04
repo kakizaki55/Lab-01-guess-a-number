@@ -15,16 +15,18 @@
 <body>
     <H1>Number Guessing game</H1>
 
-    <p>you have 4 tries to guess a number between 1-20.</p>
+    <p id="rules-and-display">you have 4 tries to guess a number between 1-20.</p>
 
-    <input type="number" id="user-guess">
+    <input type="number" id="player-guess">
     <button id="submit-button">Guess</button>
+    <button id="reset-button" >Play again</button>
 
     <p>Guesses Remaning:
         <span
-            id="guess-remaining">4</div>
+            id="guess-remaining"></div>
         </span> 
-    </p>    
+    </p>
+
 
     <script type="module" src="./app.js"></script>
 </body>
