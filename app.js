@@ -12,9 +12,13 @@ let playerGuess = document.getElementById('player-guess');
 
 remainingDisplay.textContent = remainingGuess;
 
-const targetNumber = Number(Math.floor((Math.random() *20) +1));
+let targetNumber = Number(Math.floor((Math.random() *20) +1));
 
 resetButton.hidden = true;
+
+let playerPoints = 0;
+const pointsDisplay= document.getElementById('points-display')
+pointsDisplay.textContent = playerPoints;
 
   submitButton.addEventListener('click' , () =>{
     // console.log('clicky')
@@ -24,18 +28,20 @@ resetButton.hidden = true;
     console.log(targetNumber);
     console.log(Number(playerGuess.value));
 
-      if(Number(remainingGuess) === 0){
-        //  console.log('you are out of guess')
-         rulesAndDisplay.innerHTML = 'You have used up all your tries...';
-         submitButton.hidden = true;
-         resetButton.hidden = false;
-
-      }else if(Number(playerGuess.value) == targetNumber){
+      if(Number(playerGuess.value) == targetNumber){
         rulesAndDisplay.innerHTML = 'Congrats you got it!!';
         // console.log('congrats you got it!')
-        submitButton.hidden = true;
-         resetButton.hidden = false;
+          submitButton.hidden = true;
+          resetButton.hidden = false;
+          playerPoints += remainingGuess+1 ;
+          pointsDisplay.textContent = playerPoints;
 
+      }else if(Number(remainingGuess) === 0){
+            //  console.log('you are out of guess')
+             rulesAndDisplay.innerHTML = 'You have used up all your tries...';
+             submitButton.hidden = true;
+             resetButton.hidden = false;
+          
       }else if(Number(playerGuess.value) <= targetNumber){
         rulesAndDisplay.innerHTML = 'Try picking a bigger number';
         // console.log('pick a bigger number')
@@ -43,14 +49,15 @@ resetButton.hidden = true;
       }else if(Number(playerGuess.value) >= targetNumber){
         rulesAndDisplay.innerHTML = 'Try picking a smaller number';
         // console.log('pick a smaller number')
-      }
+      };
 
   });
  
   resetButton.addEventListener('click', ()=>{
-    remainingGuess = 4;
-    submitButton.hidden = false;
-    resetButton.hidden = true;
-    remainingDisplay.textContent = remainingGuess
+      remainingGuess = 4;
+      submitButton.hidden = false;
+      resetButton.hidden = true;
+      remainingDisplay.textContent = remainingGuess;
+      playerGuess.value ='';
 
   });
