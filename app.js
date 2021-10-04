@@ -7,16 +7,13 @@ const rulesAndDisplay = document.getElementById('rules-and-display');
 const remainingDisplay = document.getElementById('guess-remaining');
 const easyModeButton = document.getElementById('easy-mode');
 
-let remainingGuess = 4;
-
 let playerGuess = document.getElementById('player-guess');
-
-remainingDisplay.textContent = remainingGuess;
-
 let targetNumber = Number(Math.floor((Math.random() *20) +1));
 
 resetButton.hidden = true;
 
+let remainingGuess = 4;
+remainingDisplay.textContent = remainingGuess;
 let playerPoints = 0;
 let playerLosses = 0;
 const losesDisplay = document.getElementById('loses-display')
@@ -25,7 +22,7 @@ losesDisplay.textContent = playerLosses;
 pointsDisplay.textContent = playerPoints;
 
   submitButton.addEventListener('click' , () =>{
-    // console.log('clicky')
+    
     remainingGuess --;
     remainingDisplay.textContent = remainingGuess;
 
