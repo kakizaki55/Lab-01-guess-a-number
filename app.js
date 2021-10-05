@@ -8,6 +8,8 @@ const remainingDisplay = document.getElementById('guess-remaining');
 const easyModeButton = document.getElementById('easy-mode');
 
 let playerGuess = document.getElementById('player-guess');
+
+
 let targetNumber = Number(Math.floor((Math.random() * 20) + 1));
 
 resetButton.hidden = true;
@@ -48,6 +50,7 @@ submitButton.addEventListener('click', () =>{
         submitreset();
         playerPoints += remainingGuess + 1 ;
         pointsDisplay.textContent = playerPoints;
+        
 
     } else if (Number(remainingGuess) === 0){
             //  console.log('you are out of guess')
@@ -64,11 +67,12 @@ submitButton.addEventListener('click', () =>{
     } else if (Number(playerGuess.value) >= targetNumber){
         changeDisplay('Try picking a smaller number'); 
         // console.log('pick a smaller number')
-    };
+    }
 
 });
  
 resetButton.addEventListener('click', ()=>{
+    targetNumber = Number(Math.floor((Math.random() * 20) + 1));
     remainingGuess = 4;
     submitButton.hidden = false;
     resetButton.hidden = true;
@@ -78,6 +82,7 @@ resetButton.addEventListener('click', ()=>{
 
 });
 easyModeButton.addEventListener('click', ()=>{
+    targetNumber = Number(Math.floor((Math.random() * 20) + 1));
     playerGuess.value = '';
     remainingGuess = 8;
     changeDisplay(`you have ${remainingGuess} tries to guess a number between 1-20.`);
