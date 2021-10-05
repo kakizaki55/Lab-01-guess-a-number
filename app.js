@@ -41,8 +41,8 @@ submitButton.addEventListener('click', () =>{
     remainingGuess --;
     guessCount();
 
-    console.log(targetNumber);
-    console.log(Number(playerGuess.value));
+    // console.log(targetNumber);
+    // console.log(Number(playerGuess.value));
 
     if (Number(playerGuess.value) === targetNumber){
         changeDisplay('Congrats you got it!!');
