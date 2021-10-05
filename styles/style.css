@@ -3,7 +3,7 @@ body{
     flex-direction: column;
     align-items:center;
     font-family:'Amatic SC', cursive;
-    background-image: url('/assets/number-background.jpeg');
+    background-image: url(../background/number-background.jpeg);
     background-position: fixed;
     background-size: cover;
     font-size: 2rem;
