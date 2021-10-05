@@ -7,6 +7,18 @@ body{
     background-position: fixed;
     background-size: cover;
     font-size: 2rem;
+    font-weight: bold;
 }
+button{
+    border: black 3px solid;
+    border-radius: 5px;
+    border-radius: 10px;
+}
+input{
+    border: black 3px solid ;
+   
 
-
+}
+#fineprint{
+    font-size: x-small;
+}

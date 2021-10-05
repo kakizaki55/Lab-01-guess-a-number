@@ -1,5 +1,5 @@
 
-
+//  import { submitreset, changeDisplay, guessCount } from './function.js';
 
 const resetButton = document.getElementById('reset-button');
 const submitButton = document.getElementById('submit-button');
@@ -8,7 +8,7 @@ const remainingDisplay = document.getElementById('guess-remaining');
 const easyModeButton = document.getElementById('easy-mode');
 
 let playerGuess = document.getElementById('player-guess');
-let targetNumber = Number(Math.floor((Math.random() *20) +1));
+let targetNumber = Number(Math.floor((Math.random() * 20) + 1));
 
 resetButton.hidden = true;
 
@@ -16,58 +16,70 @@ let remainingGuess = 4;
 remainingDisplay.textContent = remainingGuess;
 let playerPoints = 0;
 let playerLosses = 0;
-const losesDisplay = document.getElementById('loses-display')
-const pointsDisplay= document.getElementById('points-display')
+
+const losesDisplay = document.getElementById('loses-display');
+const pointsDisplay = document.getElementById('points-display');
 losesDisplay.textContent = playerLosses;
 pointsDisplay.textContent = playerPoints;
 
-  submitButton.addEventListener('click' , () =>{
+function submitreset(){
+    submitButton.hidden = true;
+    resetButton.hidden = false;
+}
+function changeDisplay(newtext){
+    rulesAndDisplay.innerHTML = newtext;
+}
+function guessCount(){
+    remainingDisplay.textContent = remainingGuess;
+}
+
+
+submitButton.addEventListener('click', () =>{
     
     remainingGuess --;
-    remainingDisplay.textContent = remainingGuess;
+    guessCount();
 
     console.log(targetNumber);
     console.log(Number(playerGuess.value));
 
-      if(Number(playerGuess.value) == targetNumber){
-        rulesAndDisplay.innerHTML = 'Congrats you got it!!';
+    if (Number(playerGuess.value) === targetNumber){
+        changeDisplay('Congrats you got it!!');
         // console.log('congrats you got it!')
-          submitButton.hidden = true;
-          resetButton.hidden = false;
-          playerPoints += remainingGuess+1 ;
-          pointsDisplay.textContent = playerPoints;
+        submitreset();
+        playerPoints += remainingGuess + 1 ;
+        pointsDisplay.textContent = playerPoints;
 
-      }else if(Number(remainingGuess) === 0){
+    } else if (Number(remainingGuess) === 0){
             //  console.log('you are out of guess')
-             rulesAndDisplay.innerHTML = 'You have used up all your tries...';
-             submitButton.hidden = true;
-             resetButton.hidden = false;
-             playerLosses ++;
-             losesDisplay.textContent = playerLosses;
+        changeDisplay('You have used up all your tries...');
+        submitreset();
+        playerLosses ++;
+        losesDisplay.textContent = playerLosses;
              
           
-      }else if(Number(playerGuess.value) <= targetNumber){
-        rulesAndDisplay.innerHTML = 'Try picking a bigger number';
+    } else if (Number(playerGuess.value) <= targetNumber){
+        changeDisplay('Try picking a bigger number'); 
         // console.log('pick a bigger number')
 
-      }else if(Number(playerGuess.value) >= targetNumber){
-        rulesAndDisplay.innerHTML = 'Try picking a smaller number';
+    } else if (Number(playerGuess.value) >= targetNumber){
+        changeDisplay('Try picking a smaller number'); 
         // console.log('pick a smaller number')
-      };
+    };
 
-  });
+});
  
-  resetButton.addEventListener('click', ()=>{
-      remainingGuess = 4;
-      submitButton.hidden = false;
-      resetButton.hidden = true;
-      remainingDisplay.textContent = remainingGuess;
-      playerGuess.value ='';
-      rulesAndDisplay.innerHTML = `you have ${remainingGuess} tries to guess a number between 1-20.`
+resetButton.addEventListener('click', ()=>{
+    remainingGuess = 4;
+    submitButton.hidden = false;
+    resetButton.hidden = true;
+    guessCount();
+    playerGuess.value = '';
+    changeDisplay(`you have ${remainingGuess} tries to guess a number between 1-20.`); 
 
-  });
+});
 easyModeButton.addEventListener('click', ()=>{
-  remainingGuess = 8;
-  rulesAndDisplay.innerHTML = `you have ${remainingGuess} tries to guess a number between 1-20.`
-  remainingDisplay.textContent = remainingGuess;
-})
+    playerGuess.value = '';
+    remainingGuess = 8;
+    changeDisplay(`you have ${remainingGuess} tries to guess a number between 1-20.`);
+    guessCount();
+});
